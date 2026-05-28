@@ -1,0 +1,320 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Happy 18th Birthday Alma 💜</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+</head>
+
+<body>
+
+  <!-- FLOWERS -->
+
+  <div class="flowers">
+    🌷 💜 🌷 💜 🌷
+  </div>
+
+  <!-- MUSIC -->
+
+  <audio autoplay loop controls class="music-player">
+
+    <source src="music.mp3" type="audio/mp3">
+
+  </audio>
+
+  <!-- PASSCODE SCREEN -->
+
+  <section
+    class="lock-screen"
+    id="lockScreen"
+  >
+
+    <!-- LEFT -->
+
+    <div class="left-side">
+
+      <img
+        src="alma.jpg"
+        class="alma-image"
+      >
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="right-side">
+
+      <h1 class="animated-title">
+        Happy 18th Birthday Alma 💜
+      </h1>
+
+      <p class="hint">
+        Hint: The day we met 💕
+      </p>
+
+      <input
+        type="password"
+        id="passcode"
+        placeholder="Enter Passcode"
+        readonly
+      >
+
+      <!-- HEART KEYBOARD -->
+
+      <div class="keyboard">
+
+        <button onclick="addNumber('1')">💜1</button>
+        <button onclick="addNumber('2')">💜2</button>
+        <button onclick="addNumber('3')">💜3</button>
+
+        <button onclick="addNumber('4')">💜4</button>
+        <button onclick="addNumber('5')">💜5</button>
+        <button onclick="addNumber('6')">💜6</button>
+
+        <button onclick="addNumber('7')">💜7</button>
+        <button onclick="addNumber('8')">💜8</button>
+        <button onclick="addNumber('9')">💜9</button>
+
+        <button onclick="addNumber('.')">💜.</button>
+        <button onclick="addNumber('0')">💜0</button>
+        <button onclick="deleteNumber()">💜⌫</button>
+
+      </div>
+
+      <button
+        class="unlock-btn"
+        onclick="checkPasscode()"
+      >
+        Unlock Surprise 🎁
+      </button>
+
+      <p id="error-message"></p>
+
+    </div>
+
+  </section>
+
+  <!-- MAIN CONTENT -->
+
+  <main
+    class="hidden"
+    id="mainContent"
+  >
+
+    <!-- HERO -->
+
+    <section
+      class="content-section hidden-section"
+      id="heroSection"
+    >
+
+      <h1 class="main-title">
+        🎉 Happy 18th Birthday Alma 🎉
+      </h1>
+
+      <p class="main-text">
+
+        Welcome to your special birthday surprise website 💜
+
+      </p>
+
+      <button
+        class="continue-btn"
+        onclick="nextSection('heroSection','thankYouSection')"
+      >
+        Continue ❤️
+      </button>
+
+    </section>
+
+    <!-- THANK YOU -->
+
+    <section
+      class="content-section hidden-section"
+      id="thankYouSection"
+    >
+
+      <!-- SPECIAL PHOTO -->
+
+      <img
+        src="special-photo.jpg"
+        class="top-photo"
+      >
+
+      <h2>
+        Thank You For Being An Amazing Girlfriend 💜
+      </h2>
+
+      <p>
+
+        Thank you for your love,
+        your kindness,
+        your care,
+        and every beautiful memory we’ve shared together 💕
+
+        You honestly make my life brighter.
+
+        Every smile,
+        every conversation,
+        and every moment with you means so much to me 🌷
+
+      </p>
+
+      <button
+        class="continue-btn"
+        onclick="nextSection('thankYouSection','daysSection')"
+      >
+        Next Surprise 🎁
+      </button>
+
+    </section>
+
+    <!-- 550 DAYS -->
+
+    <section
+      class="content-section hidden-section"
+      id="daysSection"
+    >
+
+      <h2>
+        More Than 550 Days Together ❤️
+      </h2>
+
+      <p>
+
+        More than 550 days of memories,
+        laughter,
+        happiness,
+        and love 💕
+
+        Every day spent with you
+        has been meaningful to me.
+
+        Thank you for staying beside me 🌷
+
+      </p>
+
+      <div class="gallery-preview">
+
+        <img src="photo1.jpg">
+        <img src="photo2.jpg">
+        <img src="photo3.jpg">
+
+      </div>
+
+      <button
+        class="continue-btn"
+        onclick="nextSection('daysSection','memoriesSection')"
+      >
+        View Our Memories 📸
+      </button>
+
+    </section>
+
+    <!-- MEMORIES -->
+
+    <section
+      class="content-section hidden-section"
+      id="memoriesSection"
+    >
+
+      <h2>
+        Our Beautiful Memories 📸
+      </h2>
+
+      <div class="memory-grid">
+
+        <img src="photo1.jpg">
+        <img src="photo2.jpg">
+        <img src="photo3.jpg">
+        <img src="photo4.jpg">
+        <img src="photo5.jpg">
+        <img src="photo6.jpg">
+        <img src="photo7.jpg">
+        <img src="photo8.jpg">
+        <img src="photo9.jpg">
+        <img src="photo10.jpg">
+        <img src="photo11.jpg">
+
+      </div>
+
+      <button
+        class="continue-btn"
+        onclick="nextSection('memoriesSection','loveSection')"
+      >
+        How Much I Love You ❤️
+      </button>
+
+    </section>
+
+    <!-- LOVE SECTION -->
+
+    <section
+      class="content-section hidden-section"
+      id="loveSection"
+    >
+
+      <h2 class="love-title">
+        I Love You So Much Alma ❤️
+      </h2>
+
+      <p class="love-letter">
+
+        I hope this little website reminds you
+        how special and loved you truly are 💜
+
+        Thank you for every smile,
+        every memory,
+        every laugh,
+        and every moment we’ve shared together 🌷
+
+        You honestly mean so much to me.
+
+        I love your heart,
+        your energy,
+        your smile,
+        your personality,
+        and everything about you ❤️
+
+        Happy 18th Birthday Beautiful 💕
+
+      </p>
+
+      <div class="love-gallery">
+
+        <img src="photo9.jpg">
+        <img src="photo10.jpg">
+        <img src="photo11.jpg">
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
+```
