@@ -135,3 +135,63 @@ document.addEventListener("keydown",function(e){
     }
 
 });
+const songs = [
+    "music.mp3",
+    "music2.mp3",
+    "music3.mp3"
+];
+
+// Shuffle playlist
+songs.sort(() => Math.random() - 0.5);
+
+const bgMusic = document.getElementById("bgMusic");
+const musicToggle = document.getElementById("musicToggle");
+
+let currentSong = 0;
+let userPaused = false;
+
+// Play a song
+function playSong(index) {
+    bgMusic.src = songs[index];
+    bgMusic.play().catch(() => {});
+}
+
+// Start playlist
+playSong(currentSong);
+
+// Next song automatically
+bgMusic.addEventListener("ended", () => {
+    currentSong = (currentSong + 1) % songs.length;
+    playSong(currentSong);
+});
+
+// Pause/Play button
+musicToggle.addEventListener("click", () => {
+
+    if (bgMusic.paused) {
+        bgMusic.play();
+        musicToggle.textContent = "⏸ Pause Music";
+        userPaused = false;
+    } else {
+        bgMusic.pause();
+        musicToggle.textContent = "▶ Play Music";
+        userPaused = true;
+    }
+
+});
+
+// Pause when user leaves the page
+document.addEventListener("visibilitychange", () => {
+
+    if (document.hidden) {
+        bgMusic.pause();
+    } else {
+
+        // Resume only if the user didn't pause it manually
+        if (!userPaused) {
+            bgMusic.play().catch(() => {});
+        }
+
+    }
+
+});
