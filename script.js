@@ -1,147 +1,137 @@
 const correctPasscode = "28.12.24";
 
-/* CURRENT ACTIVE SECTION */
-
-let currentSection = null;
-
-/* ADD NUMBERS */
+/*=========================
+        ADD NUMBER
+=========================*/
 
 function addNumber(number){
 
-  const input =
-    document.getElementById("passcode");
+    const input = document.getElementById("passcode");
 
-  input.value += number;
+    input.value += number;
+
+    document.getElementById("error-message").textContent = "";
 
 }
 
-/* DELETE */
+/*=========================
+      DELETE NUMBER
+=========================*/
 
 function deleteNumber(){
 
-  const input =
-    document.getElementById("passcode");
+    const input = document.getElementById("passcode");
 
-  input.value =
-    input.value.slice(0,-1);
+    input.value = input.value.slice(0,-1);
 
 }
 
-/* CHECK PASSCODE */
+/*=========================
+      CHECK PASSCODE
+=========================*/
 
 function checkPasscode(){
 
-  const input =
-    document.getElementById("passcode").value;
+    const input = document.getElementById("passcode").value;
 
-  if(input === correctPasscode){
+    if(input === correctPasscode){
 
-    /* HIDE LOCK SCREEN */
+        const lockScreen = document.getElementById("lockScreen");
 
-    document
-      .getElementById("lockScreen")
-      .classList.add("fade-out");
+        lockScreen.classList.add("fade-out");
+
+        setTimeout(()=>{
+
+            lockScreen.style.display="none";
+
+            const main = document.getElementById("mainContent");
+
+            main.classList.remove("hidden");
+
+            showOnlySection("heroSection");
+
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+
+        },700);
+
+    }
+
+    else{
+
+        document.getElementById("error-message").textContent =
+        "💔 Wrong passcode";
+
+        document.getElementById("passcode").value="";
+
+    }
+
+}
+
+/*=========================
+      SHOW SECTION
+=========================*/
+
+function showOnlySection(id){
+
+    document.querySelectorAll(".content-section").forEach(section=>{
+
+        section.classList.add("hidden-section");
+
+        section.classList.remove("active-section");
+
+    });
+
+    const target = document.getElementById(id);
+
+    target.classList.remove("hidden-section");
 
     setTimeout(()=>{
 
-      document
-        .getElementById("lockScreen")
-        .style.display = "none";
+        target.classList.add("active-section");
 
-      document
-        .getElementById("mainContent")
-        .classList.remove("hidden");
+        target.scrollIntoView({
+            behavior:"smooth"
+        });
 
-      /* SHOW FIRST SECTION */
-
-      showOnlySection("heroSection");
-
-    },800);
-
-  }else{
-
-    document
-      .getElementById("error-message")
-      .innerHTML =
-      "Wrong passcode 💔";
-
-  }
+    },50);
 
 }
 
-/* SHOW ONLY ONE SECTION */
+/*=========================
+      NEXT SECTION
+=========================*/
 
-function showOnlySection(sectionId){
+function nextSection(current,next){
 
-  const sections =
-    document.querySelectorAll(".content-section");
+    const currentSection=document.getElementById(current);
 
-  /* HIDE ALL SECTIONS */
+    currentSection.classList.add("fade-out");
 
-  sections.forEach(section=>{
+    setTimeout(()=>{
 
-    section.classList.remove("active-section");
+        currentSection.classList.remove("fade-out");
 
-    section.classList.add("hidden-section");
+        currentSection.classList.add("hidden-section");
 
-  });
+        showOnlySection(next);
 
-  /* SHOW SELECTED SECTION */
-
-  const target =
-    document.getElementById(sectionId);
-
-  target.classList.remove("hidden-section");
-
-  setTimeout(()=>{
-
-    target.classList.add("active-section");
-
-  },100);
-
-  currentSection = sectionId;
+    },500);
 
 }
 
-/* NEXT SECTION */
+/*=========================
+      ENTER KEY
+=========================*/
 
-function nextSection(currentId,nextId){
+document.addEventListener("keydown",function(e){
 
-  const current =
-    document.getElementById(currentId);
+    if(e.key==="Enter"){
 
-  current.classList.remove("active-section");
+        checkPasscode();
 
-  current.classList.add("fade-out");
+    }
 
-  setTimeout(()=>{
-
-    current.classList.add("hidden-section");
-
-    current.classList.remove("fade-out");
-
-    showOnlySection(nextId);
-
-  },600);
-
-}
-
-/* OPTIONAL LOVE POPUP */
-
-function showLovePopup(){
-
-  document
-    .getElementById("lovePopup")
-    .classList.remove("hidden");
-
-}
-
-/* CLOSE POPUP */
-
-function closeLovePopup(){
-
-  document
-    .getElementById("lovePopup")
-    .classList.add("hidden");
-
-}
+});
